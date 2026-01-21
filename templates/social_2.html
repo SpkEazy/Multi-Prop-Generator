@@ -49,6 +49,7 @@
       z-index:1;
     }
 
+    /* ✅ Labels (GLA / ERF) — no padding so they align with circles */
     .stats-panel .text_Point_1,
     .stats-panel .text_Point_2{
       position:absolute;
@@ -58,7 +59,9 @@
       font-size:24px;
       text-transform:uppercase;
       z-index:2;
-      margin:0; padding:0;
+      margin:0;
+      padding:0;            /* ✅ IMPORTANT */
+      text-align:center;
     }
 
     .stats-panel .text_Point_1{ top:20px; left:26px; }
@@ -79,13 +82,27 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:10px;
+      padding:10px 16px;     /* ✅ breathing room left/right */
       text-align:center;
+      box-sizing:border-box; /* ✅ keep padding inside width */
     }
 
-    /* 👇 THESE ARE THE ONES YOU ADJUST */
-    .stats-panel .textbox_Point_1{ top:10px; left:120px; width:140px; height:49px; }
-    .stats-panel .textbox_Point_2{ top:108px; left:120px; width:140px; height:90px; }
+    /* ✅ FORCE position + controlled width (space from right edge) */
+    .stats-panel #textbox_Point_1{
+      top: 10px !important;
+      left: 108px !important;
+      width: 136px !important;
+      height: 49px !important;
+      box-sizing: border-box !important;
+    }
+
+    .stats-panel #textbox_Point_2{
+      top: 108px !important;
+      left: 108px !important;
+      width: 136px !important;
+      height: 90px !important;
+      box-sizing: border-box !important;
+    }
 
     .stats-panel .textbox_Point_1 span,
     .stats-panel .textbox_Point_2 span{
@@ -225,6 +242,7 @@
   </div>
 </body>
 </html>
+
 
 
 
