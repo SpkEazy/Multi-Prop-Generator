@@ -3,22 +3,12 @@
 <head>
   <title>Commercial Social Post 2</title>
   <meta name="viewport" content="width=1200px, height=1200px, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> <!-- Link to import Roboto Black font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: white;
-    }
-
-    .overlay-image_property {
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      width: 1130px;
-      height: 1130px;
-      z-index: 2;
-      object-fit: contain;
       background-color: white;
     }
 
@@ -35,314 +25,244 @@
       z-index: 3;
     }
 
-    .overlay-image_red-tag {
-      position: absolute;
-      top: 0px;
-      left: 718px;
-      width: 490px;
-      height: 462px;
-      z-index: 4; /* Adjusted z-index */
-      mix-blend-mode: multiply; /* Apply multiply blending mode */
-    }
-
     .overlay-image_AI-icon {
       position: absolute;
       top: 967px;
       left: 957px;
       width: 196px;
-      height: autopx;
+      height: auto;
       z-index: 11;
     }
 
-    .blue-overlay-image {
+    /* ✅ BLUE PANEL = one locked group */
+    .stats-panel {
       position: absolute;
       top: 887px;
       left: 50px;
       width: 270px;
       height: 205px;
       z-index: 11;
+    }
+
+    /* Blue overlay sits inside the panel */
+    .stats-panel .blue-overlay-image {
+      position: absolute;
+      inset: 0;
+      width: 270px;
+      height: 205px;
+      z-index: 0;
       mix-blend-mode: multiply;
     }
 
-    .buttons {
+    /* Buttons positioned relative to the panel */
+    .stats-panel .buttons {
       position: absolute;
-      top: 200px;
-      left: 71px;
+      top: 16px;   /* 👈 tweak ONLY these if needed */
+      left: 21px;  /* 👈 tweak ONLY these if needed */
       width: 72px;
       height: auto;
-      z-index: 12;
+      z-index: 1;
     }
 
-
-
-        .text_Point_1 {
-        position: absolute;
-        padding: 10px; /* Padding around text */
-        font-family: 'Roboto', sans-serif; /* Roboto Black font */
-        font-weight: 900; /* Roboto Black font weight */
-        color: black; /* Text color */
-        font-size: 24px; /* Increased font size */
-        z-index: 13; /* Set a higher z-index than the red tag */
-        align-items: center;; /* Center vertically */
-        top: 891px; /* Adjusted top position */
-        left: 74px; /* Adjusted left position */
-        text-transform: uppercase;
-      }
-
-
-      .text_Point_2 {
+    /* ✅ Panel text now also relative to the panel (NOT the page) */
+    .stats-panel .text_Point_1,
+    .stats-panel .text_Point_2 {
       position: absolute;
-      padding: 10px; /* Padding around text */
-      font-family: 'Roboto', sans-serif; /* Roboto Black font */
-      font-weight: 900; /* Roboto Black font weight */
-      color: black; /* Text color */
-      font-size: 24px; /* Increased font size */
-      z-index: 13; /* Set a higher z-index than the red tag */
-      align-items: center;; /* Center vertically */
-      top: 992px; /* Adjusted top position */
-      left: 76px; /* Adjusted left position */
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      color: black;
+      font-size: 24px;
       text-transform: uppercase;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
     }
 
-    .textbox_Point_1 {
+    .stats-panel .text_Point_1 { top: 20px; left: 26px; }
+    .stats-panel .text_Point_2 { top: 121px; left: 26px; }
+
+    .stats-panel .text_Point_1 p,
+    .stats-panel .text_Point_2 p {
+      margin: 0;
+    }
+
+    /* ✅ Values sit relative to the panel and keep IDs for builder.js font resize */
+    .stats-panel .textbox_Point_1,
+    .stats-panel .textbox_Point_2 {
       position: absolute;
-      padding: 10px; /* Padding around text */
-      font-family: 'Roboto', sans-serif; /* Roboto Black font */
-      width: 140px; /* Width matches the red tag */
-      height: 49px; /* Height set to accommodate two lines */
-      font-weight: 900; /* Roboto Black font weight */
-      color: white; /* Text color */
-      white-space: nowrap; /* Prevent wrapping */
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
       overflow: hidden;
-      z-index: 13; /* Set a higher z-index than the red tag */
-    /*  border: 1px solid white; /* Thin white border */
-      display: flex; /* Enable flexbox */
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically */
-
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
     }
 
-    .textbox_Point_2 {
-      position: absolute;
-      padding: 10px; /* Padding around text */
-      font-family: 'Roboto', sans-serif; /* Roboto Black font */
-      width: 140px; /* Width matches the red tag */
-      height: 90px; /* Height set to accommodate two lines */
-      font-weight: 900; /* Roboto Black font weight */
-      color: white; /* Text color */
-      white-space: nowrap; /* Prevent wrapping */
-      overflow: hidden;
-      z-index: 13; /* Set a higher z-index than the red tag */
-    /*  border: 1px solid white; /* Thin white border */
-      display: flex; /* Enable flexbox */
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically */
+    .stats-panel .textbox_Point_1 { top: 8px; left: 110px; width: 140px; height: 49px; }
+    .stats-panel .textbox_Point_2 { top: 106px; left: 110px; width: 140px; height: 90px; }
 
-    }
-
-    .textbox_Point_1 span,
-    .textbox_Point_2 span {
+    .stats-panel .textbox_Point_1 span,
+    .stats-panel .textbox_Point_2 span {
       text-align: center;
       width: 100%;
       max-width: 100%;
       max-height: 100%;
       display: block;
-      font-size: 100px; /* Start high for resize */
+      font-size: 100px; /* builder.js will resize */
       line-height: 1;
     }
 
-
-
-
-
-
-
-
     .text_Header {
-    position: absolute;
-    padding: 10px; /* Padding around text */
-    font-family: 'Roboto', sans-serif; /* Roboto Black font */
-    font-weight: 900; /* Roboto Black font weight */
-    color: white; /* Text color */
-    font-size: 95px; /* Increased font size */
-    z-index: 10; /* Set a higher z-index than the red tag */
-    align-items: left; /* Center vertically */
-    top: -60px; /* Adjusted top position */
-    left: 50px; /* Adjusted left position */
-  }
+      position: absolute;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      color: white;
+      font-size: 95px;
+      z-index: 10;
+      top: -60px;
+      left: 50px;
+    }
 
+    .textbox_Header_2 {
+      position: absolute;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      width: 800px;
+      height: 100px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      z-index: 7;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    .textbox_Header_2 span {
+      text-align: left;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 100px;
+    }
 
+    .textbox_1_Red_Tag,
+    .textbox_2_Red_Tag {
+      position: absolute;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+      z-index: 7;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(43deg);
+    }
 
+    .textbox_1_Red_Tag { width: 260px; height: 90px; }
+    .textbox_2_Red_Tag { width: 433px; height: 90px; }
 
-
-
-  .textbox_Header_2 {
-    position: absolute;
-    padding: 10px; /* Padding around text */
-    font-family: 'Roboto', sans-serif; /* Roboto Black font */
-    width: 800px; /* Width matches the red tag */
-    height: 100px; /* Height set to accommodate two lines */
-    font-weight: 900; /* Roboto Black font weight */
-    color: white; /* Text color */
-    white-space: nowrap; /* Prevent wrapping */
-    overflow: hidden;
-    z-index: 7; /* Set a higher z-index than the red tag */
- text-transform: uppercase;
-    display: flex; /* Enable flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-  }
-
-
-  .textbox_Header_2 span {
-    text-align: left;; /* Center text horizontally */
-    width: 100%; /* Ensure text spans the full width */
-    box-sizing: border-box; /* Include padding in width calculation */
-    font-size: 100px; /* Initial font size */
-  }
-
-
-
-  .textbox_1_Red_Tag,
-  .textbox_2_Red_Tag {
-    position: absolute;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    color: white;
-    white-space: nowrap;
-    z-index: 7;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(43deg);
-  }
-
-  .textbox_1_Red_Tag {
-    width: 260px;
-    height: 90px;
-  }
-
-  .textbox_2_Red_Tag {
-    width: 433px;
-    height: 90px;
-  }
-
-  .textbox_1_Red_Tag span,
-  .textbox_2_Red_Tag span {
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 100px;
-  }
-
+    .textbox_1_Red_Tag span,
+    .textbox_2_Red_Tag span {
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 100px;
+    }
 
     .red-rectangle {
-        position: absolute;
-        top: 1092px;
-        left: 50px;
-        width: 270px;
-        height: 60px;
-        background-color: rgb(227, 31, 42);
-        z-index: 6; /* Ensure the red rectangle appears on top of other elements */
-      }
+      position: absolute;
+      top: 1092px;
+      left: 50px;
+      width: 270px;
+      height: 60px;
+      background-color: rgb(227, 31, 42);
+      z-index: 6;
+    }
 
-      .textbox_Red_Rectangle {
-        position: absolute;
-        padding: 10px; /* Padding around text */
-        font-family: 'Roboto', sans-serif; /* Roboto Black font */
-        width: 255px; /* Width matches the red tag */
-        height: 60px; /* Height set to accommodate two lines */
-        font-weight: 900; /* Roboto Black font weight */
-        color: white; /* Text color */
-        white-space: nowrap; /* Prevent wrapping */
-        overflow: hidden;
-        z-index: 8; /* Set a higher z-index than the red tag */
-        text-transform: uppercase;
-        /*border: 1px solid white; /* Thin white border */
-        display: flex; /* Enable flexbox */
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
+    .textbox_Red_Rectangle {
+      position: absolute;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      width: 255px;
+      height: 60px;
+      font-weight: 900;
+      color: white;
+      white-space: nowrap;
+      overflow: hidden;
+      z-index: 8;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      }
-
-      .textbox_Red_Rectangle span {
-        text-align: center; /* Center text horizontally */
-        width: 100%; /* Ensure text spans the full width */
-        box-sizing: border-box; /* Include padding in width calculation */
-        font-size: 100px; /* Initial font size */
-      }
-
-
+    .textbox_Red_Rectangle span {
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 100px;
+    }
   </style>
 </head>
-<body>
 
-  <div id="capture-container-dual"
-     style="width: 1200px; height: 1200px; position: relative; overflow: hidden; background: white;">
+<body>
+  <div id="capture-container-dual" style="width: 1200px; height: 1200px; position: relative; overflow: hidden; background: white;">
     <div style="position: absolute; top: 40px; left: 40px; width: 1130px; height: 1130px; overflow: hidden;">
-    <canvas id="social-property-canvas" width="3390" height="3390" style="width: 1130px; height: 1130px;"></canvas>
+      <canvas id="social-property-canvas" width="3390" height="3390" style="width: 1130px; height: 1130px;"></canvas>
     </div>
 
     <div class="overlay-gradient"></div>
 
     <img src="assets/AI-icon.png" class="overlay-image_AI-icon" alt="AI Icon">
 
-    <img src="assets/blue-overlay-image.jpg" class="blue-overlay-image" alt="Blue Overlay">
+    <!-- ✅ Locked group: blue panel + buttons + stats text -->
+    <div class="stats-panel">
+      <img src="assets/blue-overlay-image.jpg" class="blue-overlay-image" alt="Blue Overlay">
+      <img src="assets/Buttons.png" class="buttons" alt="Buttons">
 
-    <img src="assets/Buttons.png" class="button" alt="Buttons">
+      <div class="text_Point_1" id="text_Point_1"><p>GLA</p></div>
+      <div class="textbox_Point_1" id="textbox_Point_1"><span>{{gla}}</span></div>
 
+      <div class="text_Point_2" id="text_Point_2"><p>ERF</p></div>
+      <div class="textbox_Point_2" id="textbox_Point_2"><span>{{erf}}</span></div>
+    </div>
 
     <div class="red-rectangle"></div>
 
-<div class="red-rectangle"></div>
+    <div class="text_Header" id="text_Header">
+      <p>ON AUCTION</p>
+    </div>
 
-<div class="text_Header" id="text_Header">
-  <P>ON AUCTION</P>
-</div>
+    <div class="textbox_Header_2" id="textbox_Header_2" style="top: 135px; left: 50px;">
+      <span>{{headline}}</span>
+    </div>
 
+    <div class="textbox_1_Red_Tag" id="textbox_1_Red_Tag" style="top: 99px; left: 910px;">
+      <span>{{tag1}}</span>
+    </div>
 
-<div class="text_Point_1" id="text_Point_1">
-  <P>GLA</P>
-</div>
+    <div class="textbox_2_Red_Tag" id="textbox_2_Red_Tag" style="top: 148px; left: 772px;">
+      <span>{{tag2}}</span>
+    </div>
 
-<div class="textbox_Point_1" id="textbox_Point_1" style="top: 905px; left: 150px;">
-  <span>{{gla}}</span>
-</div>
-
-
-
-<div class="text_Point_2" id="text_Point_2">
-  <P>ERF</P>
-</div>
-
-<div class="textbox_Point_2" id="textbox_Point_2" style="top: 982px; left: 150px;">
-  <span>{{erf}}</span>
-</div>
-
-
-<div class="textbox_Header_2" id="textbox_Header_2" style="top: 135px; left: 50px;">
-  <span>{{headline}}</span>
-</div>
-
-<div class="textbox_1_Red_Tag" id="textbox_1_Red_Tag" style="top: 99px; left: 910px;">
-  <span>{{tag1}}</span>
-</div>
-
-<div class="textbox_2_Red_Tag" id="textbox_2_Red_Tag" style="top: 148px; left: 772px;">
-  <span>{{tag2}}</span>
-</div>
-
-<div class="textbox_Red_Rectangle" id="textbox_Red_Rectangle" style="top: 1082px; left: 46px;">
-  <span>{{suburb}}</span>
-</div>
-</div>
-
-
+    <div class="textbox_Red_Rectangle" id="textbox_Red_Rectangle" style="top: 1082px; left: 46px;">
+      <span>{{suburb}}</span>
+    </div>
+  </div>
 </body>
 </html>
+
+
 
 
 
